@@ -1,0 +1,15 @@
+Windows Enviroment
+===================================
+
+It was tested with configuration bellow:
+    - Windows 10 Pro
+    - Vagrant 2.2.4
+    - Virtual Box 6.0.4
+
+After install Vagrant and Virtual Box, open the folder were you clone the project using a 
+command window (Power Shell or cmd) and run:
+    - "vagrant up" : it will create the VMs
+    - "vagrant ssh <VM>" : it will connect you to VM console
+
+
+Find more commands at https://www.vagrantup.com/docs/cli/

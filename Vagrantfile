@@ -3,6 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
+  
   # AWDS server
   config.vm.define "dns" do |dns| 
     
@@ -11,10 +12,14 @@ Vagrant.configure("2") do |config|
       v.memory = 512
       v.cpus = 1
     end
-
+        
     dns.vm.box = "debian/jessie64"
-    dns.vm.network "private_network", ip: "192.168.50.2"
+    dns.vm.network "private_network", ip: "192.168.50.2"    
     config.vm.hostname = "awds.com"
+    
+    dns.vm.provision "chef_solo" do |chef|
+      chef.add_recipe "dns"  
+    end
 
   end
 
@@ -29,6 +34,12 @@ Vagrant.configure("2") do |config|
     
     web1.vm.box = "debian/jessie64"
     web1.vm.network "private_network", ip: "192.168.50.3"
+    config.vm.hostname = "web1"
+
+    web1.vm.provision "chef_solo" do |chef|
+      chef.add_recipe "web"
+      
+    end
 
   end
 
@@ -43,6 +54,13 @@ Vagrant.configure("2") do |config|
 
     web2.vm.box = "debian/jessie64"
     web2.vm.network "private_network", ip: "192.168.50.4"
+    config.vm.hostname = "web2"
+
+
+    web2.vm.provision "chef_solo" do |chef|      
+      chef.add_recipe "web"      
+    end
+
 
   end
   
